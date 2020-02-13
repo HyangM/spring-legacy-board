@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.hm.bbs.dto.Criteria;
 import com.hm.bbs.mapper.BoardMapper;
 import com.hm.bbs.model.BoardVO;
 
@@ -24,25 +25,33 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insert(BoardVO board) {
 		// TODO Auto-generated method stub
-
+		 mapper.insertSelectKey(board);
 	}
 
 	@Override
 	public BoardVO selectOne(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.read(bno);
 	}
 
 	@Override
 	public void update(BoardVO board) {
-		// TODO Auto-generated method stub
-
+		mapper.update(board);
 	}
 
 	@Override
 	public void delete(int bno) {
-		// TODO Auto-generated method stub
+		mapper.delete(bno);
+	}
 
+	@Override
+	public List<BoardVO> selectAll(Criteria cri) {
+		return mapper.oracleListPaging(cri);
+	}
+
+	@Override
+	public int totalCount(Criteria cri) {
+		return mapper.totalCount();
 	}
 
 }

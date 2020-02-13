@@ -2,6 +2,7 @@ package com.hm.bbs.mapper;
 
 import java.util.List;
 
+import com.hm.bbs.dto.Criteria;
 import com.hm.bbs.model.BoardVO;
 
 public interface BoardMapper {
@@ -11,5 +12,7 @@ public interface BoardMapper {
 	public BoardVO read(int bno);
 	public void delete(int bno);
 	public int update(BoardVO board);
-	public void updatReadCount(int bno);
+	public void updateReadCount(int bno);
+	public List<BoardVO> oracleListPaging(Criteria cri);
+	public int totalCount();
 }
